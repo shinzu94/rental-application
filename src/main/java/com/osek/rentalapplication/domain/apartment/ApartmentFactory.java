@@ -11,6 +11,6 @@ public class ApartmentFactory {
         roomsDefinition.forEach((name, size) -> {
             rooms.add(new Room(name, new SquareMeter(size)));
         });
-        return new Apartment(ownerId, address, description);
+        return new Apartment(ownerId, address, rooms, description);
     }
 }
