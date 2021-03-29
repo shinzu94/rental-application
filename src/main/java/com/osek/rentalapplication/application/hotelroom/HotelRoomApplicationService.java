@@ -15,6 +15,6 @@ public class HotelRoomApplicationService {
 
     public void add(String hotelId, int number, Map<String, Double> spacesDefinition, String description){
         HotelRoom hotelRoom = new HotelRoomFactory().create(hotelId, number, spacesDefinition, description);
-        HotelRoomRepository.save(hotelRoom);
+        hotelRoomRepository.save(hotelRoom);
     }
 }
