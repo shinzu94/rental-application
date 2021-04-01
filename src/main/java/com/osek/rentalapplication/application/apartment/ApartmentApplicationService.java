@@ -3,6 +3,7 @@ package com.osek.rentalapplication.application.apartment;
 import com.osek.rentalapplication.domain.apartment.Apartment;
 import com.osek.rentalapplication.domain.apartment.ApartmentFactory;
 import com.osek.rentalapplication.domain.apartment.ApartmentRepository;
+import com.osek.rentalapplication.domain.apartment.Period;
 
 import java.time.LocalDate;
 import java.util.Map;
@@ -41,6 +42,6 @@ public class ApartmentApplicationService {
         Apartment apartment = apartmentRepository.findById(id);
         Period period = new Period(start, end);
 
-        apartment.book();
+        apartment.book(tenantId, period);
     }
 }
