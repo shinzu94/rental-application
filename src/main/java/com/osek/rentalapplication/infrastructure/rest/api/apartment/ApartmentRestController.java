@@ -30,6 +30,7 @@ public class ApartmentRestController {
     @PutMapping("/book/{id}")
     public void book(@PathVariable String id, @RequestBody ApartmentBookingDto apartmentBookingDto) {
         apartmentApplicationService.book(
+                id,
                 apartmentBookingDto.getTenantId(),
                 apartmentBookingDto.getStart(),
                 apartmentBookingDto.getEnd()

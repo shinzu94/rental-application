@@ -24,5 +24,6 @@ public class Apartment {
     }
 
     public void book(String tenantId, Period period) {
+        new ApartmentBooked apartmentBooked = new ApartmentBooked(id, ownerId, tenantId, period);
     }
 }
