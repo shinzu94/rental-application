@@ -1,9 +1,6 @@
 package com.osek.rentalapplication.infrastructure.rest.api.apartment;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.osek.rentalapplication.application.apartment.ApartmentApplicationService;
 
 @RestController
@@ -27,6 +24,15 @@ public class ApartmentRestController {
                 apartmentDto.getCountry(),
                 apartmentDto.getDescription(),
                 apartmentDto.getRoomsDefinition()
+        );
+    }
+
+    @PutMapping("/book/{id}")
+    public void book(@PathVariable String id, @RequestBody ApartmentBookingDto apartmentBookingDto) {
+        apartmentApplicationService.book(
+                apartmentBookingDto.getTenantId(),
+                apartmentBookingDto.getStart(),
+                apartmentBookingDto.getEnd()
         );
     }
 }

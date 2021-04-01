@@ -4,6 +4,7 @@ import com.osek.rentalapplication.domain.apartment.Apartment;
 import com.osek.rentalapplication.domain.apartment.ApartmentFactory;
 import com.osek.rentalapplication.domain.apartment.ApartmentRepository;
 
+import java.time.LocalDate;
 import java.util.Map;
 
 public class ApartmentApplicationService {
