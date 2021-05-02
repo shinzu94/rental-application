@@ -11,6 +11,11 @@ public class JpaHotelRoomRepository implements HotelRoomRepository {
     }
 
     @Override
+    public HotelRoom findById(String id) {
+        return springJpaHotelRoomRepository.findById(id).get();
+    }
+
+    @Override
     public void save(HotelRoom hotelRoom) {
         springJpaHotelRoomRepository.save(hotelRoom);
     }

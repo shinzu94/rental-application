@@ -1,16 +1,19 @@
 package com.osek.rentalapplication.domain.hotelroom;
 
+import com.osek.rentalapplication.domain.eventchanel.EventChannel;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 public class HotelRoom {
     @Id
     @GeneratedValue
-    private String HotelRoomId;
+    private String hotelRoomId;
     private final String hotelId;
     private final int number;
     @OneToMany
@@ -22,5 +25,10 @@ public class HotelRoom {
         this.number = number;
         this.spaces = spaces;
         this.description = description;
+    }
+
+    public void book(String tenantId, List<LocalDate> days, EventChannel eventChannel) {
+        HotelRoomBooked hotelRoomBooked = HotelRoomBooked.create(hotelRoomId, hotelId, tenantId, days);
+        eventChannel.publish(hotelRoomBooked);
     }
 }

@@ -1,5 +1,6 @@
 package com.osek.rentalapplication.application.hotelroom;
 
+import com.osek.rentalapplication.domain.eventchanel.EventChannel;
 import com.osek.rentalapplication.domain.hotelroom.HotelRoom;
 import com.osek.rentalapplication.domain.hotelroom.HotelRoomFactory;
 import com.osek.rentalapplication.domain.hotelroom.HotelRoomRepository;
@@ -10,9 +11,11 @@ import java.util.Map;
 
 public class HotelRoomApplicationService {
     private final HotelRoomRepository hotelRoomRepository;
+    private final EventChannel eventChannel;
 
-    public HotelRoomApplicationService(HotelRoomRepository hotelRoomRepository) {
+    public HotelRoomApplicationService(HotelRoomRepository hotelRoomRepository, EventChannel eventChannel) {
         this.hotelRoomRepository = hotelRoomRepository;
+        this.eventChannel = eventChannel;
     }
 
     public void add(String hotelId, int number, Map<String, Double> spacesDefinition, String description){
@@ -21,5 +24,8 @@ public class HotelRoomApplicationService {
     }
 
     public void book(String id, String tenantId, List<LocalDate> days) {
+        HotelRoom hotelRoom = hotelRoomRepository.findById(id);
+
+        hotelRoom.book(tenantId, days, eventChannel);
     }
 }
