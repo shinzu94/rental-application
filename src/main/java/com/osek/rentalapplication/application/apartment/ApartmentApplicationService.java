@@ -4,12 +4,14 @@ import com.osek.rentalapplication.domain.apartment.Apartment;
 import com.osek.rentalapplication.domain.apartment.ApartmentFactory;
 import com.osek.rentalapplication.domain.apartment.ApartmentRepository;
 import com.osek.rentalapplication.domain.apartment.Period;
+import com.osek.rentalapplication.domain.eventchanel.EventChannel;
 
 import java.time.LocalDate;
 import java.util.Map;
 
 public class ApartmentApplicationService {
     private final ApartmentRepository apartmentRepository;
+    private final EventChannel eventChannel;
 
     public ApartmentApplicationService(ApartmentRepository apartmentRepository) {
         this.apartmentRepository = apartmentRepository;
@@ -42,6 +44,6 @@ public class ApartmentApplicationService {
         Apartment apartment = apartmentRepository.findById(id);
         Period period = new Period(start, end);
 
-        apartment.book(tenantId, period);
+        apartment.book(tenantId, period, eventChannel);
     }
 }
