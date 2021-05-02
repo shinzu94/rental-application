@@ -11,12 +11,6 @@ public class ApartmentBooked {
     private final String tenantId;
     private final Period period;
 
-    static ApartmentBooked(String apartmentId, String ownerId, String tenantId, Period period) {
-        String eventId = UUID.randomUUID().toString();
-        LocalDateTime eventCreationDateTime = LocalDateTime.now();
-        return new ApartmentBooked(eventId, eventCreationDateTime, apartmentId, ownerId, tenantId, period);
-    }
-
     private ApartmentBooked(String eventId, LocalDateTime eventCreationDateTime, String apartmentId, String ownerId, String tenantId, Period period) {
         this.eventId = eventId;
         this.eventCreationDateTime = eventCreationDateTime;
@@ -24,5 +18,11 @@ public class ApartmentBooked {
         this.ownerId = ownerId;
         this.tenantId = tenantId;
         this.period = period;
+    }
+
+    static ApartmentBooked create(String apartmentId, String ownerId, String tenantId, Period period) {
+        String eventId = UUID.randomUUID().toString();
+        LocalDateTime eventCreationDateTime = LocalDateTime.now();
+        return new ApartmentBooked(eventId, eventCreationDateTime, apartmentId, ownerId, tenantId, period);
     }
 }
