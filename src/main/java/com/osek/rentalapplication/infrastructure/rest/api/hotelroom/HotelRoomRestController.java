@@ -1,10 +1,7 @@
 package com.osek.rentalapplication.infrastructure.rest.api.hotelroom;
 
 import com.osek.rentalapplication.application.hotelroom.HotelRoomApplicationService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/hotelroom")
@@ -23,5 +20,10 @@ public class HotelRoomRestController {
                 hotelRoomDto.getSpacesDefinition(),
                 hotelRoomDto.getDescription()
         );
+    }
+
+    @PutMapping("/book/{id}")
+    public void book(@PathVariable String id, @RequestBody HotelBookingDto hotelBookingDto) {
+        hotelRoomApplicationService.book(id, hotelBookingDto.getTenantId(), hotelBookingDto.getDays());
     }
 }
