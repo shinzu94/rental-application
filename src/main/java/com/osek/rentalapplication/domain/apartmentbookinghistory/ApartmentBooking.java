@@ -1,13 +1,21 @@
 package com.osek.rentalapplication.domain.apartmentbookinghistory;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
+@Entity
 public class ApartmentBooking {
     private BookingStep bookingStep;
     private LocalDateTime bookingDateTime;
     private String ownerId;
     private String tenantId;
+    @Embedded
     private BookingPeriod bookingPeriod;
+    @Id
+    private String id;
 
     private ApartmentBooking(BookingStep bookingStep,
                              LocalDateTime bookingDateTime,
@@ -19,9 +27,14 @@ public class ApartmentBooking {
         this.ownerId = ownerId;
         this.tenantId = tenantId;
         this.bookingPeriod = bookingPeriod;
+        this.id = UUID.randomUUID().toString();
     }
 
-    public static ApartmentBooking start(LocalDateTime bookingDateTime,
+    public ApartmentBooking() {
+
+    }
+
+    public ApartmentBooking start(LocalDateTime bookingDateTime,
                                          String ownerId,
                                          String tenantId,
                                          BookingPeriod bookingPeriod) {
